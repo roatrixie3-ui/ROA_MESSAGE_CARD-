@@ -1,0 +1,188 @@
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+  font-family: "Orbitron", "Segoe UI", sans-serif;
+  color: white;
+}
+
+/* Background stars */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+.stars span {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite ease-in-out;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+/* Card container */
+.card {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  perspective: 1000px;
+  z-index: 2;
+}
+
+.inner-card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0,255,255,0.3);
+}
+
+.card.flipped .inner-card {
+  transform: rotateY(180deg);
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0,255,255,0.3);
+  box-shadow: inset 0 0 40px rgba(0,255,255,0.2);
+}
+
+.front {
+  background: linear-gradient(135deg, rgba(0,255,255,0.2), rgba(255,0,255,0.1));
+}
+
+.back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, rgba(255,0,255,0.15), rgba(0,255,255,0.15));
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 1.8rem;
+  text-align: center;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #00ffff; }
+  to { text-shadow: 0 0 25px #ff00ff; color: #ff00ff; }
+}
+
+.photo-frame {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+  background-size: 300% 300%;
+  animation: colorShift 4s infinite linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+@keyframes colorShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.photo-inner {
+  width: 135px;
+  height: 135px;
+  border-radius: 50%;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#teacher-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+#photo-placeholder {
+  font-size: 50px;
+  color: #00ffff;
+  text-shadow: 0 0 15px #00ffff;
+}
+
+.upload-btn {
+  margin-top: 15px;
+  border: 1px solid rgba(0, 255, 255, 0.6);
+  border-radius: 8px;
+  padding: 6px 12px;
+  color: #00ffff;
+  background: rgba(255, 255, 255, 0.05);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.upload-btn:hover {
+  background: rgba(0, 255, 255, 0.2);
+  color: #fff;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+.message {
+  font-size: 1rem;
+  color: #fff;
+  line-height: 1.6;
+  margin-top: 30px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+  max-width: 85%;
+}
+
+.student-name {
+  margin-top: 20px;
+  color: #ffff00;
+  font-weight: bold;
+  text-shadow: 0 0 15px #ffff00;
+}
+
+.hint {
+  position: absolute;
+  bottom: 15px;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.8);
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
